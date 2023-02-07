@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #video {
+        width: 500px;
+        height: 375px;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="video" autoplay></video>
+    <br><br>
+    <button id="startCamera">Abrir Cámara</button>
+    <button id="snap">Capturar Imagen</button>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <script>
+      const video = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      const startCamera = document.getElementById('startCamera');
+      const snap = document.getElementById('snap');
+      const context = canvas.getContext('2d');
+
+      startCamera.addEventListener('click', function() {
+        navigator.mediaDevices
+          .getUserMedia({ video: true, audio: false })
+          .then(function(stream) {
+            video.srcObject = stream;
+          })
+          .catch(function(err) {
+            console.log('Error: ', err);
+          });
+      });
+
+      snap.addEventListener('click', function() {
+        canvas.style.display = 'block';
+        video.style.display = 'none';
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      });
+    </script>
+  </body>
+</html>
