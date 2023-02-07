@@ -1,0 +1,19 @@
+body{
+    margin:0;
+    -webkit-font-smooting:antialiased;
+    background-color:rgba(126, 123, 123, 0.473)
+}
+div.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#video {
+    margin-top: 5%;
+    width: 500px;
+    height: 375px;
+  }
+div.buttonContainer{
+    display: flex;
+    justify-content: center;
+} 
